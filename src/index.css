@@ -1,0 +1,13 @@
+:root {
+  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+  color: #eee9df;
+  background: #111312;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html { scroll-behavior: smooth; }
+body { min-width: 320px; margin: 0; background: #111312; }
+#root { min-height: 100vh; }
+a { color: inherit; }
