@@ -23,11 +23,11 @@ export const personalInfo = {
 }
 
 export const heroContent = {
-    greeting: "Hello, I'm Gia Bao",
-    role: 'Developer',
-    description: 'Building modern, responsive and user-friendly web applications that feel as good as they work.',
+    greeting: "Hi, I'm Gia Bao 👋",
+    role: 'Web Developer',
+    description: 'I build modern and responsive web applications and enjoy turning ideas into real-world products. Currently focusing on React, Next.js, JavaScript, and Backend Development with Java & Spring Boot as I work toward becoming a Fullstack Developer.',
     location: 'Based in Vietnam',
-    availability: 'Working worldwide',
+    availability: '',
     imageAlt: 'Portrait of Gia Bao',
     primaryAction: 'View my work',
     secondaryAction: 'Contact me',
