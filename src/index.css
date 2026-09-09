@@ -7,7 +7,8 @@
   -webkit-font-smoothing: antialiased;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-snap-type: y mandatory; scroll-padding-top: 76px; }
 body { min-width: 320px; margin: 0; background: #111312; }
 #root { min-height: 100vh; }
 a { color: inherit; }
+@media (max-width: 640px) { html { scroll-snap-type: y proximity; scroll-padding-top: 68px; } }
