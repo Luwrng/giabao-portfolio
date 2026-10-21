@@ -1,96 +1,112 @@
 import { useEffect, useState } from "react";
-
-import { navigationContent, navigationLinks } from "../data/content.ts";
-import { Button } from "./Button";
-
-const links = navigationLinks;
-
+import { useContent } from "../language";
+import { Arrow } from "./Arrow";
+const ids = ["about", "projects", "experience", "skills", "contact"];
 export function Navbar() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState("top");
-
-    useEffect(() => {
-        // Keep the navigation highlight aligned with the section currently in view.
-        const sections = links
-            .map(({ id }) => document.getElementById(id))
-            .filter(Boolean) as HTMLElement[];
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const visible = entries
-                    .filter((entry) => entry.isIntersecting)
-                    .sort(
-                        (a, b) => b.intersectionRatio - a.intersectionRatio,
-                    )[0];
-
-                if (visible) {
-                    setActiveSection(visible.target.id);
-                }
-            },
-            {
-                rootMargin: "-25% 0px -60% 0px",
-                threshold: [0.1, 0.25, 0.5],
-            },
-        );
-
-        sections.forEach((section) => {
-            observer.observe(section);
+  const { t, language, setLanguage } = useContent();
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        let current = "";
+        ids.forEach((id) => {
+          if (
+            (document.getElementById(id)?.getBoundingClientRect().top ??
+              Infinity) < 180
+          )
+            current = id;
         });
-
-        return () => observer.disconnect();
-    }, []);
-
-    const closeMenu = () => setIsMenuOpen(false);
-
-    const toggleMenu = () => setIsMenuOpen((open) => !open);
-
-    return (
-        <header className="navbar">
-            {/* Logo */}
+        if (
+          window.scrollY + window.innerHeight >=
+          document.documentElement.scrollHeight - 30
+        )
+          current = "contact";
+        setActive(current);
+      });
+    };
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    const resize = () => {
+      if (window.innerWidth > 900) setOpen(false);
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", resize);
+    window.addEventListener("keydown", escape);
+    update();
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("keydown", escape);
+    };
+  }, []);
+  return (
+    <header className="navbar">
+      <div className="nav-inner">
+        <a
+          className="brand"
+          href="#top"
+          aria-label="Gia Bao home"
+          onClick={() => setOpen(false)}
+        >
+          <span className="brand-mark">
+            gb<span>.</span>
+          </span>
+          <span className="brand-name">
+            GIA BAO<span>DEVELOPER / VIETNAM</span>
+          </span>
+        </a>
+        <nav
+          id="main-navigation"
+          className={`nav-links ${open ? "is-open" : ""}`}
+          aria-label={
+            language === "vi" ? "Điều hướng chính" : "Main navigation"
+          }
+        >
+          {ids.map((id, i) => (
             <a
-                className="brand"
-                href="#top"
-                onClick={closeMenu}
-                aria-label="Gia Bao home"
+              key={id}
+              href={`#${id}`}
+              aria-current={active === id ? "location" : undefined}
+              className={active === id ? "active" : ""}
+              onClick={() => setOpen(false)}
             >
-                <span className="brand-mark">{navigationContent.brandMark}</span>
-                <span>{navigationContent.brand}</span>
+              {t.nav[i]}
             </a>
-
-            {/* Navigation */}
-            <nav
-                id="main-navigation"
-                className={`nav-links ${isMenuOpen ? "is-open" : ""}`}
-                aria-label="Main navigation"
-            >
-                {links.map(({ id, label }) => (
-                    <a
-                        key={id}
-                        href={`#${id}`}
-                        className={activeSection === id ? "active" : ""}
-                        onClick={closeMenu}
-                    >
-                        {label}
-                    </a>
-                ))}
-            </nav>
-
-            {/* Actions */}
-            <div className="nav-actions">
-                <Button href="#contact">{navigationContent.talkAction}</Button>
-
-                <button
-                    className="menu-toggle"
-                    type="button"
-                    aria-expanded={isMenuOpen}
-                    aria-controls="main-navigation"
-                    aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                    onClick={toggleMenu}
-                >
-                    <span />
-                    <span />
-                </button>
-            </div>
-        </header>
-    );
+          ))}
+        </nav>
+        <div className="nav-actions">
+          <button
+            className="language-toggle"
+            type="button"
+            aria-label={t.language}
+            onClick={() => setLanguage(language === "vi" ? "en" : "vi")}
+          >
+            <span className={language === "vi" ? "selected" : ""}>VI</span>
+            <span aria-hidden="true">/</span>
+            <span className={language === "en" ? "selected" : ""}>EN</span>
+          </button>
+          <a className="nav-contact" href="#contact">
+            {t.talk}
+            <Arrow />
+          </a>
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-expanded={open}
+            aria-controls="main-navigation"
+            aria-label={open ? t.close : t.menu}
+            onClick={() => setOpen(!open)}
+          >
+            <span />
+            <span />
+          </button>
+        </div>
+      </div>
+    </header>
+  );
 }

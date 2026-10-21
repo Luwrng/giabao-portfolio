@@ -1,46 +1,57 @@
-import type { Project } from '../data/projects'
-
-import { Card } from './Card'
-
-interface ProjectCardProps {
-    project: Project
-}
-
-export function ProjectCard({ project }: ProjectCardProps) {
-    return (
-        <Card className="project-card">
-            <div className="project-art">
-                <img src={project.image} alt={`${project.title} project screenshot`} />
-            </div>
-
-            <div className="project-copy">
-                <span className="project-category">{project.category}</span>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-
-                <div className="tags">
-                    {project.technologies.map((technology) => (
-                        <span key={technology}>{technology}</span>
-                    ))}
-                </div>
-
-                <div className="project-links">
-                    <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Live Demo
-                    </a>
-                    <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        GitHub
-                    </a>
-                </div>
-            </div>
-        </Card>
-    )
+import type { Project } from "../data/projects";
+import { useContent } from "../language";
+import { Arrow } from "./Arrow";
+import { ProjectVisual } from "./ProjectVisual";
+export function ProjectCard({
+  project,
+  onOpen,
+}: {
+  project: Project;
+  onOpen: (project: Project) => void;
+}) {
+  const { t, language } = useContent();
+  return (
+    <article
+      className={`project-card ${project.id === "bridge" ? "featured-project" : ""}`}
+    >
+      <button
+        className="project-art-button"
+        type="button"
+        onClick={() => onOpen(project)}
+        aria-label={`${t.projects.details}: ${project.title}`}
+      >
+        <ProjectVisual id={project.id} large={project.id === "bridge"} />
+        <span className="art-open">
+          <Arrow />
+        </span>
+      </button>
+      <div className="project-copy">
+        <div className="project-meta">
+          <span>{project.role[language]}</span>
+          <time>{project.period}</time>
+        </div>
+        <h3>{project.title}</h3>
+        <p className="project-description">{project.description[language]}</p>
+        {project.result && (
+          <p className="project-result">
+            <span aria-hidden="true">↗</span>
+            {project.result[language]}
+          </p>
+        )}
+        <ul className="tags">
+          {project.technologies.map((tech) => (
+            <li key={tech}>{tech}</li>
+          ))}
+        </ul>
+        <button
+          type="button"
+          className="project-detail-button"
+          onClick={() => onOpen(project)}
+        >
+          {t.projects.details}
+          <Arrow />
+        </button>
+      </div>
+    </article>
+  );
 }

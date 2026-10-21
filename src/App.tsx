@@ -1,28 +1,38 @@
-import './App.css'
-import { Footer } from './components/Footer'
-import { Navbar } from './components/Navbar'
-import { About } from './sections/About'
-import { Contact } from './sections/Contact'
-import { Experience } from './sections/Experience'
-import { Hero } from './sections/Hero'
-import { Projects } from './sections/Projects'
-import { Skills } from './sections/Skills'
-
-function App() {
-    return (
-        <div className="portfolio" id="top">
-            <Navbar />
-            <main>
-                <Hero />
-                <About />
-                <Skills />
-                <Projects />
-                <Experience />
-                <Contact />
-            </main>
-            <Footer copyright="© 2026 Gia Bao" />
-        </div>
-    );
+import "./App.css";
+import { LanguageProvider } from "./LanguageContext";
+import { useContent } from "./language";
+import { Navbar } from "./components/Navbar";
+import { Hero } from "./sections/Hero";
+import { About } from "./sections/About";
+import { Projects } from "./sections/Projects";
+import { Experience } from "./sections/Experience";
+import { Skills } from "./sections/Skills";
+import { Contact } from "./sections/Contact";
+import { Footer } from "./components/Footer";
+function Portfolio() {
+  const { t } = useContent();
+  return (
+    <div className="portfolio">
+      <a className="skip-link" href="#main-content">
+        {t.skip}
+      </a>
+      <Navbar />
+      <main id="main-content">
+        <Hero />
+        <About />
+        <Projects />
+        <Experience />
+        <Skills />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  );
 }
-
-export default App
+export default function App() {
+  return (
+    <LanguageProvider>
+      <Portfolio />
+    </LanguageProvider>
+  );
+}

@@ -1,90 +1,360 @@
-export const navigationLinks = [
-    { id: 'top', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'contact', label: 'Contact' },
-] as const
-
-export const navigationContent = {
-    brand: 'Gia Bao',
-    brandMark: 'GB',
-    talkAction: "Let's talk",
-}
-
+export type Language = "en" | "vi";
+export type Localized = Record<Language, string>;
 export const personalInfo = {
-    name: 'Truong Nguyen Gia Bao',
-    title: 'Front-end Developer',
-    phone: '0865411146',
-    email: 'baotng8502@gmail.com',
-    github: 'https://github.com/Luwrng',
-    location: 'District 9, Thu Duc City, Ho Chi Minh City',
-}
-
-export const heroContent = {
-    greeting: "Hi, I'm Gia Bao 👋",
-    role: 'Web Developer',
-    description: 'I build modern and responsive web applications and enjoy turning ideas into real-world products. Currently focusing on React, Next.js, JavaScript, and Backend Development with Java & Spring Boot as I work toward becoming a Fullstack Developer.',
-    location: 'Based in Vietnam',
-    availability: '',
-    imageAlt: 'Portrait of Gia Bao',
-    primaryAction: 'View my work',
-    secondaryAction: 'Contact me',
-    scrollLabel: 'Scroll to explore',
-}
-
-export const aboutContent = {
-    eyebrow: 'About',
-    title: 'Frontend developer who cares about the details.',
-    lead: 'Frontend Developer with 6+ months of internship experience in a professional environment, passionate about creating clean, responsive and user-friendly web applications.',
-    paragraphs: [
-        'Hands-on experience building web applications with HTML, CSS, JavaScript, React and Next.js, from implementing UI designs to integrating RESTful APIs.',
-        'Comfortable working with Git, Swagger, Figma, Ant Design, Mantine, Cloudinary and Firebase, with basic knowledge of Docker and backend integration.',
-    ],
-}
-
-export const skillsContent = {
-    eyebrow: 'Skills',
-    title: '',
-    cards: [
-        { number: '01', title: 'Frontend', description: 'React.js\nNext.js / Vue.js\nRedux / Vite\nTailwind CSS / Bootstrap\nAnt Design / Mantine / MUI' },
-        { number: '02', title: 'Backend & Data', description: 'Node.js / Express.js\nJava / Spring Boot\nPostgreSQL / SQL Server\nMySQL / MongoDB\nFirebase Realtime Database' },
-        { number: '03', title: 'Tools', description: 'JavaScript / TypeScript\nGit / GitHub / Docker\nRESTful API / Swagger\nFigma / Postman\nCloudinary / Firebase' },
-    ],
-}
-
-export const educationContent = {
-    school: 'FPT University',
-    period: '2020 - 2025',
-    major: 'Software Engineering',
-    description: 'Focused on Web Development, including React, Next.js and RESTful APIs. Participated in multiple web application development projects during academic studies.',
-}
-
-export const experienceContent = {
-    eyebrow: 'Experience',
-    title: '',
-    items: [
-        { year: '10/06/2025 - 10/07/2025', position: 'IT Staff - Fresher', company: 'NGUYEN LONG Furniture', description: 'Developed Excel data processing scripts, contributed to the official website UI and feature integration, and researched Bazis software for design tasks.' },
-        { year: '20/03/2025 - 20/05/2025', position: 'IT Intern', company: 'Anh Quan Tech', description: 'Designed ReactJS interfaces, built reusable components, integrated APIs, created responsive Mantine UI, and implemented validation, routing and dynamic data updates.' },
-    ],
-}
-
-export const contactContent = {
-    eyebrow: 'Contact',
-    title: 'Have a good idea?',
-    accentTitle: "Let's make it real.",
-    email: personalInfo.email,
-}
-
-export const projectContent = {
-    githubLabel: 'GitHub',
-    demoLabel: 'Live demo',
-    allProjectsLabel: 'See all projects',
-}
-
-export const footerContent = {
-    copyright: '© 2026 Gia Bao',
-    note: 'Designed & built with care',
-    backToTop: 'Back to top ↑',
-}
+  name: "Truong Nguyen Gia Bao",
+  email: "baotng8502@gmail.com",
+  phone: "0865411146",
+  github: "https://github.com/Luwrng",
+  cv: { en: "/cv/Gia-Bao-CV-EN.pdf", vi: "/cv/Gia-Bao-CV-VI.pdf" },
+};
+export const content = {
+  en: {
+    nav: ["About", "Projects", "Experience", "Skills", "Contact"],
+    skip: "Skip to content",
+    menu: "Open menu",
+    close: "Close",
+    talk: "Let’s talk",
+    language: "Switch to Vietnamese",
+    hero: {
+      eyebrow: "TRUONG NGUYEN GIA BAO / PORTFOLIO",
+      line1: "Fullstack",
+      line2: "Developer.",
+      description:
+        "From thoughtful interfaces to working systems. I build with React, connect APIs, and bring data into the picture.",
+      status: "Open to fresher fullstack roles",
+      primary: "Explore my work",
+      secondary: "Download CV",
+      location: "Ho Chi Minh City, Vietnam",
+      caption: "A little curiosity. A lot of building.",
+      note: "FRONTEND → BACKEND → DATA",
+      footer: "React interfaces. API integrations. Real camera feeds.",
+      scroll: "Scroll to discover",
+    },
+    about: {
+      eyebrow: "01 / A LITTLE ABOUT ME",
+      title: "Curious by nature.",
+      accent: "Practical by approach.",
+      lead: "I’m Gia Bao, a software engineering graduate building my path in fullstack development.",
+      paragraphs: [
+        "My internships and team projects started with React interfaces, reusable components, and REST API integrations. I enjoy understanding how a feature works beyond the screen.",
+        "More recently, I independently built a vehicle entry and exit system with ASP.NET Core, Python, and SQL Server, integrating license plate recognition and testing it with real camera feeds.",
+      ],
+      facts: [
+        "Software Engineering",
+        "FPT University · 2021–2025",
+        "Based in Ho Chi Minh City",
+      ],
+      link: "Get to know my experience",
+    },
+    projects: {
+      eyebrow: "02 / SELECTED WORK",
+      title: "A few things",
+      accent: "I’ve built.",
+      description:
+        "Personal work and team projects, with my role and contributions made clear. Most recent first.",
+      filters: ["All projects", "Fullstack", "Frontend"],
+      details: "View project",
+      source: "Source code",
+      demo: "Live demo",
+      contributions: "My contribution",
+      result: "Outcome",
+      tech: "Built with",
+      overview: "Project overview",
+      repo: "More on GitHub",
+      diagram: "Interface illustration",
+      empty: "No projects in this category.",
+    },
+    experience: {
+      eyebrow: "03 / THE JOURNEY",
+      title: "Learning by",
+      accent: "doing the work.",
+      education: "EDUCATION",
+      degree: "Software Engineering",
+      items: [
+        {
+          period: "10/2026",
+          role: "Freelance Fullstack Developer",
+          company: "BridgeTrafficDemo",
+          type: "Freelance",
+          points: [
+            "Independently built a vehicle entry and exit management application with a web interface, APIs, SQL Server storage, and license plate recognition.",
+            "Completed the project in one week and tested it with real camera feeds.",
+          ],
+        },
+        {
+          period: "06/2025 – 07/2025",
+          role: "IT Staff",
+          company: "NGUYEN LONG Furniture",
+          type: "Work",
+          points: [
+            "Processed and standardized Excel data, transferring it into an internal application to support data entry.",
+            "Contributed to website interface development and feature integration based on business requirements.",
+          ],
+        },
+        {
+          period: "03/2025 – 05/2025",
+          role: "IT Intern",
+          company: "Anh Quan Tech",
+          type: "Internship",
+          points: [
+            "Developed responsive interfaces with React and Mantine UI, organizing features into reusable components.",
+            "Worked with the backend team on API integration, form validation, routing, and dynamic data updates.",
+          ],
+        },
+      ],
+    },
+    skills: {
+      eyebrow: "04 / MY TOOLKIT",
+      title: "The tools behind",
+      accent: "the work.",
+      description:
+        "A practical toolkit for building interfaces, integrating services, and working with application data.",
+      groups: [
+        {
+          title: "Languages",
+          items: ["JavaScript", "TypeScript", "Java", "C#", "Python"],
+        },
+        {
+          title: "Frontend",
+          items: [
+            "HTML",
+            "CSS",
+            "React",
+            "Next.js",
+            "Redux",
+            "Tailwind CSS",
+            "Ant Design",
+            "Mantine UI",
+          ],
+        },
+        {
+          title: "Backend",
+          items: [
+            "Node.js",
+            "Express",
+            "Spring Boot",
+            "ASP.NET Core",
+            "Python APIs",
+          ],
+        },
+        {
+          title: "Data",
+          items: [
+            "SQL Server",
+            "PostgreSQL",
+            "MySQL",
+            "MongoDB",
+            "Firebase Realtime Database",
+          ],
+        },
+        {
+          title: "Tools",
+          items: ["Git", "GitHub", "Vite", "Postman", "Swagger", "Figma"],
+        },
+        {
+          title: "Integrations",
+          items: [
+            "REST APIs",
+            "Firebase Authentication",
+            "Cloudinary",
+            "YOLO",
+            "PaddleOCR",
+          ],
+        },
+      ],
+    },
+    contact: {
+      eyebrow: "05 / WHAT’S NEXT?",
+      title: "Let’s build",
+      accent: "something useful.",
+      description:
+        "Looking for a fresher fullstack developer, or have a project in mind? I’d be happy to hear from you.",
+      email: "Send an email",
+      copy: "Copy email",
+      copied: "Email copied",
+      copyFailed: "Could not copy. Please select the email address.",
+      resume: "View my CV",
+      location: "Ho Chi Minh City, Vietnam",
+    },
+    footer: {
+      note: "Built with React & a little curiosity.",
+      top: "Back to top",
+      rights: "Gia Bao",
+    },
+  },
+  vi: {
+    nav: ["Giới thiệu", "Dự án", "Kinh nghiệm", "Kỹ năng", "Liên hệ"],
+    skip: "Đến nội dung chính",
+    menu: "Mở menu",
+    close: "Đóng",
+    talk: "Liên hệ",
+    language: "Chuyển sang tiếng Anh",
+    hero: {
+      eyebrow: "TRƯƠNG NGUYỄN GIA BẢO / PORTFOLIO",
+      line1: "Fullstack",
+      line2: "Developer.",
+      description:
+        "Từ giao diện đến hệ thống hoạt động. Tôi xây dựng giao diện React, tích hợp API và kết nối dữ liệu cho ứng dụng web.",
+      status: "Tìm kiếm vị trí Fresher Fullstack",
+      primary: "Khám phá dự án",
+      secondary: "Tải CV",
+      location: "TP. Hồ Chí Minh, Việt Nam",
+      caption: "Luôn tò mò. Không ngừng xây dựng.",
+      note: "GIAO DIỆN → BACKEND → DỮ LIỆU",
+      footer: "Giao diện React. Tích hợp API. Camera thực tế.",
+      scroll: "Khám phá bên dưới",
+    },
+    about: {
+      eyebrow: "01 / VỀ TÔI",
+      title: "Bắt đầu từ tò mò.",
+      accent: "Học qua thực hành.",
+      lead: "Tôi là Gia Bảo, tốt nghiệp ngành Kỹ thuật phần mềm và đang phát triển theo hướng Fullstack.",
+      paragraphs: [
+        "Qua thực tập và dự án nhóm, tôi có kinh nghiệm xây dựng giao diện React, component tái sử dụng và tích hợp REST API. Tôi thích tìm hiểu cách một tính năng hoạt động từ giao diện đến xử lý dữ liệu.",
+        "Gần đây, tôi tự phát triển hệ thống quản lý xe ra vào với ASP.NET Core, Python và SQL Server; tích hợp nhận diện biển số và chạy thử với camera thực tế.",
+      ],
+      facts: [
+        "Kỹ thuật phần mềm",
+        "Đại học FPT · 2021–2025",
+        "Sinh sống tại TP. Hồ Chí Minh",
+      ],
+      link: "Xem kinh nghiệm của tôi",
+    },
+    projects: {
+      eyebrow: "02 / DỰ ÁN",
+      title: "Những điều",
+      accent: "tôi đã xây dựng.",
+      description:
+        "Dự án cá nhân và dự án nhóm, với vai trò và đóng góp cụ thể. Sắp xếp mới nhất trước.",
+      filters: ["Tất cả", "Fullstack", "Frontend"],
+      details: "Xem dự án",
+      source: "Mã nguồn",
+      demo: "Xem demo",
+      contributions: "Đóng góp của tôi",
+      result: "Kết quả",
+      tech: "Công nghệ",
+      overview: "Tổng quan dự án",
+      repo: "Thêm trên GitHub",
+      diagram: "Minh họa giao diện",
+      empty: "Chưa có dự án trong nhóm này.",
+    },
+    experience: {
+      eyebrow: "03 / HÀNH TRÌNH",
+      title: "Kinh nghiệm từ",
+      accent: "công việc thực tế.",
+      education: "HỌC VẤN",
+      degree: "Kỹ thuật phần mềm",
+      items: [
+        {
+          period: "10/2026",
+          role: "Freelance Fullstack Developer",
+          company: "BridgeTrafficDemo",
+          type: "Freelance",
+          points: [
+            "Tự phát triển ứng dụng quản lý xe ra vào, gồm giao diện web, API, lưu trữ SQL Server và nhận diện biển số.",
+            "Hoàn thành dự án trong một tuần và chạy thử với camera thực tế.",
+          ],
+        },
+        {
+          period: "06/2025 – 07/2025",
+          role: "Nhân viên IT",
+          company: "NGUYEN LONG Furniture",
+          type: "Công việc",
+          points: [
+            "Xử lý, chuẩn hóa dữ liệu Excel và chuyển dữ liệu vào ứng dụng nội bộ để hỗ trợ nhập liệu.",
+            "Tham gia phát triển giao diện website và tích hợp chức năng theo yêu cầu nghiệp vụ.",
+          ],
+        },
+        {
+          period: "03/2025 – 05/2025",
+          role: "Thực tập sinh IT",
+          company: "Anh Quân Tech",
+          type: "Thực tập",
+          points: [
+            "Phát triển giao diện responsive bằng React và Mantine UI, tổ chức tính năng thành các component tái sử dụng.",
+            "Phối hợp với nhóm Backend để tích hợp API, kiểm tra biểu mẫu, điều hướng trang và cập nhật dữ liệu động.",
+          ],
+        },
+      ],
+    },
+    skills: {
+      eyebrow: "04 / KỸ NĂNG",
+      title: "Công cụ để",
+      accent: "biến ý tưởng thành thật.",
+      description:
+        "Các công nghệ tôi sử dụng để xây dựng giao diện, tích hợp dịch vụ và làm việc với dữ liệu ứng dụng.",
+      groups: [
+        {
+          title: "Ngôn ngữ",
+          items: ["JavaScript", "TypeScript", "Java", "C#", "Python"],
+        },
+        {
+          title: "Frontend",
+          items: [
+            "HTML",
+            "CSS",
+            "React",
+            "Next.js",
+            "Redux",
+            "Tailwind CSS",
+            "Ant Design",
+            "Mantine UI",
+          ],
+        },
+        {
+          title: "Backend",
+          items: [
+            "Node.js",
+            "Express",
+            "Spring Boot",
+            "ASP.NET Core",
+            "Python APIs",
+          ],
+        },
+        {
+          title: "Dữ liệu",
+          items: [
+            "SQL Server",
+            "PostgreSQL",
+            "MySQL",
+            "MongoDB",
+            "Firebase Realtime Database",
+          ],
+        },
+        {
+          title: "Công cụ",
+          items: ["Git", "GitHub", "Vite", "Postman", "Swagger", "Figma"],
+        },
+        {
+          title: "Tích hợp",
+          items: [
+            "REST APIs",
+            "Firebase Authentication",
+            "Cloudinary",
+            "YOLO",
+            "PaddleOCR",
+          ],
+        },
+      ],
+    },
+    contact: {
+      eyebrow: "05 / KẾT NỐI",
+      title: "Cùng xây dựng",
+      accent: "điều hữu ích.",
+      description:
+        "Bạn đang tìm Fresher Fullstack Developer hoặc có một dự án cần thực hiện? Hãy kết nối với tôi.",
+      email: "Gửi email",
+      copy: "Sao chép email",
+      copied: "Đã sao chép email",
+      copyFailed:
+        "Chưa sao chép được. Bạn có thể chọn địa chỉ email để sao chép.",
+      resume: "Xem CV của tôi",
+      location: "TP. Hồ Chí Minh, Việt Nam",
+    },
+    footer: {
+      note: "Xây dựng với React và sự tò mò.",
+      top: "Về đầu trang",
+      rights: "Gia Bảo",
+    },
+  },
+};
